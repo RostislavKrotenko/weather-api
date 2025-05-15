@@ -1,0 +1,31 @@
+services:
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: weather
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: weather
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U weather"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build: .
+    environment:
+      DATABASE_URL: postgres://weather:secret@db:5432/weather?sslmode=disable
+      PORT: 8080
+      OPENWEATHER_API_KEY: "8ffc1d42e99a073455c4518032fda96e"
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: on-failure
+    ports:
+      - "8080:8080"
+
+volumes:
+  db-data:
+    driver: local

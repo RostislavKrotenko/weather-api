@@ -1,0 +1,9 @@
+CREATE TABLE subscriptions (
+  id UUID PRIMARY KEY,
+  email TEXT NOT NULL,
+  city TEXT NOT NULL,
+  frequency TEXT NOT NULL,
+  token UUID NOT NULL UNIQUE,
+  confirmed BOOLEAN NOT NULL DEFAULT FALSE,
+  created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW()
+);
