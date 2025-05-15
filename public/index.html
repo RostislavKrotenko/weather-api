@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Weather Service</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 600px; margin: 2rem auto; padding: 0 1rem; }
+    h1 { text-align: center; }
+    section { border: 1px solid #ddd; border-radius: 6px; padding: 1rem; margin-bottom: 1rem; }
+    label { display: block; margin-top: .5rem; }
+    input, select, button { width: 100%; padding: .5rem; margin-top: .25rem; box-sizing: border-box; }
+    button { background: #007bcc; color: #fff; border: none; cursor: pointer; border-radius: 4px; }
+    .msg { margin-top: .75rem; min-height: 1.5em; }
+  </style>
+</head>
+<body>
+  <h1>Weather Service</h1>
+
+  <section id="weather">
+    <h2>Get Weather</h2>
+    <label>City
+      <input type="text" id="weather-city" placeholder="e.g. Kyiv">
+    </label>
+    <button onclick="fetchWeather()">Show Weather</button>
+    <div class="msg" id="weather-result"></div>
+  </section>
+
+  <section id="subscribe">
+    <h2>Subscribe</h2>
+    <label>Email
+      <input type="email" id="sub-email" placeholder="you@example.com">
+    </label>
+    <label>City
+      <input type="text" id="sub-city" placeholder="e.g. Kyiv">
+    </label>
+    <label>Frequency
+      <select id="sub-frequency">
+        <option value="hourly">Hourly</option>
+        <option value="daily">Daily</option>
+      </select>
+    </label>
+    <button onclick="subscribe()">Subscribe</button>
+    <div class="msg" id="sub-msg"></div>
+  </section>
+
+  <section id="confirm">
+    <h2>Confirm / Unsubscribe</h2>
+    <label>Token
+      <input type="text" id="token" placeholder="Paste your token here">
+    </label>
+    <button onclick="confirmSub()">Confirm</button>
+    <button style="margin-top:.5rem; background:#cc0000;" onclick="unsubscribe()">Unsubscribe</button>
+    <div class="msg" id="token-msg"></div>
+  </section>
+
+  <script src="/app.js"></script>
+</body>
+</html>

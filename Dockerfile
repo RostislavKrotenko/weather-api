@@ -13,6 +13,7 @@ WORKDIR /root/
 COPY --from=builder /app/weather-service .
 COPY migrations ./migrations
 COPY swagger.yaml ./swagger.yaml
+COPY ./public ./public
 
 EXPOSE 8080
 ENTRYPOINT ["./weather-service"]

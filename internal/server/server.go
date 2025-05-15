@@ -22,5 +22,8 @@ func New(dbConn *sql.DB) *http.Server {
         r.Get("/unsubscribe/{token}", h.Unsubscribe)
     })
 
+    fs := http.FileServer(http.Dir("./public"))
+    r.Handle("/*", fs)
+
     return &http.Server{Handler: r}
 }
