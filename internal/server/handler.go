@@ -19,13 +19,11 @@ type handler struct {
 	db *sql.DB
 }
 
-// errorResponse — уніфікована структура помилок
 type errorResponse struct {
 	Code    int    `json:"code"`
 	Message string `json:"message"`
 }
 
-// writeError встановлює статус і повертає JSON-помилку
 func writeError(w http.ResponseWriter, status int, msg string) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(status)
@@ -79,7 +77,6 @@ func (h *handler) GetWeather(w http.ResponseWriter, r *http.Request) {
 
 	switch resp.StatusCode {
 	case http.StatusOK:
-		// усе добре
 	case http.StatusNotFound:
 		writeError(w, http.StatusNotFound, "City not found")
 		return

@@ -69,6 +69,12 @@ docker-compose up --build -d
 
 This command will build the Go service, start the PostgreSQL database, and run the server on `http://localhost:8080`.
 
+You can also try the live deployment here:
+```
+https://weather-api-jibz.onrender.com/
+```
+It may take a minute or two after you first hit the URL for the Docker container to finish building and the database migrations.
+
 ## Endpoints and Example cURL Requests for Each Status Code
 
 ### GET /api/weather
