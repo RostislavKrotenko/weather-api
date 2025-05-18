@@ -43,12 +43,13 @@
 
 ### 5. Packaging & CI/CD
 - **Docker + Docker Compose** for local development and easy setup.
-- **GitHub Actions** pipeline:  
-  1. Build Docker images.  
-  2. Start the database and wait for it to be healthy.  
-  3. Start the app service.  
-  4. Run integration checks.  
-  5. Tear down containers and clean up volumes.
+- **GitHub Actions** pipeline:
+  1. Run Unit Tests
+  2. Build Docker images.
+  3. Start the database and wait for it to be healthy.  
+  4. Start the app service.  
+  5. Run integration checks.  
+  6. Tear down containers and clean up volumes.
 
 ## Getting Started
 

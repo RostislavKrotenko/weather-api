@@ -2,16 +2,27 @@ async function fetchWeather() {
     const city = document.getElementById('weather-city').value;
     const resEl = document.getElementById('weather-result');
     resEl.textContent = '';
-    if (!city) { resEl.textContent = 'Please enter a city.'; return; }
-    try {
-      const r = await fetch(`/api/weather?city=${encodeURIComponent(city)}`);
-      if (!r.ok) throw new Error(r.statusText);
-      const j = await r.json();
-      resEl.textContent =
-        `Temp: ${j.temperature}°C, Humidity: ${j.humidity}%, ${j.description}`;
-    } catch (e) {
-      resEl.textContent = 'Error: ' + e.message;
+    if (!city) {
+      resEl.textContent = 'Please enter a city.';
+      return;
     }
+  
+    const response = await fetch(`/api/weather?city=${encodeURIComponent(city)}`);
+    if (!response.ok) {
+      let message;
+      if (response.status === 404) {
+        message = 'Invalid City';
+      } else {
+        const text = await response.text().catch(() => '');
+        message = text || response.statusText || `Error ${response.status}`;
+      }
+      resEl.textContent = 'Error: ' + message;
+      return;
+    }
+  
+    const data = await response.json();
+    resEl.textContent = 
+      `Temp: ${data.temperature}°C, Humidity: ${data.humidity}%, ${data.description}`;
   }
   
   async function subscribe() {
